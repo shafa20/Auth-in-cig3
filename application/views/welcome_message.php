@@ -1,92 +1,111 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>Welcome to CodeIgniter</title>
-
-	<style type="text/css">
-
-	::selection { background-color: #E13300; color: white; }
-	::-moz-selection { background-color: #E13300; color: white; }
-
-	body {
-		background-color: #fff;
-		margin: 40px;
-		font: 13px/20px normal Helvetica, Arial, sans-serif;
-		color: #4F5155;
-	}
-
-	a {
-		color: #003399;
-		background-color: transparent;
-		font-weight: normal;
-		text-decoration: none;
-	}
-
-	a:hover {
-		color: #97310e;
-	}
-
-	h1 {
-		color: #444;
-		background-color: transparent;
-		border-bottom: 1px solid #D0D0D0;
-		font-size: 19px;
-		font-weight: normal;
-		margin: 0 0 14px 0;
-		padding: 14px 15px 10px 15px;
-	}
-
-	code {
-		font-family: Consolas, Monaco, Courier New, Courier, monospace;
-		font-size: 12px;
-		background-color: #f9f9f9;
-		border: 1px solid #D0D0D0;
-		color: #002166;
-		display: block;
-		margin: 14px 0 14px 0;
-		padding: 12px 10px 12px 10px;
-	}
-
-	#body {
-		margin: 0 15px 0 15px;
-		min-height: 96px;
-	}
-
-	p {
-		margin: 0 0 10px;
-		padding:0;
-	}
-
-	p.footer {
-		text-align: right;
-		font-size: 11px;
-		border-top: 1px solid #D0D0D0;
-		line-height: 32px;
-		padding: 0 10px 0 10px;
-		margin: 20px 0 0 0;
-	}
-
-	#container {
-		margin: 10px;
-		border: 1px solid #D0D0D0;
-		box-shadow: 0 0 8px #D0D0D0;
-	}
-	</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login & Registration Page</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom styles -->
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .login-form {
+      max-width: 350px;
+      margin: 0 auto;
+      padding: 30px 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+      margin-top: 100px;
+    }
+    .login-form h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .login-form .form-floating {
+      margin-bottom: 20px;
+    }
+    .login-form .btn-primary {
+      width: 100%;
+    }
+    .registration-form {
+      display: none;
+    }
+  </style>
 </head>
 <body>
 
-<div id="container">
-	<h1>Welcome to CodeIgniter!</h1>
-
-	<div id="body">
-		
-	</div>
-
-	
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-sm-12 mx-auto">
+      <div class="login-form">
+        <h2>Login</h2>
+        <form action="#" method="post">
+          <div class="form-floating">
+            <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+            <label for="email">Email address</label>
+          </div>
+          <div class="form-floating">
+            <input type="password" class="form-control" id="password" placeholder="Password" required>
+            <label for="password">Password</label>
+          </div>
+          <div class="d-grid">
+            <button type="submit" class="btn btn-primary">Login</button>
+            <button type="button" class="btn btn-secondary mt-3" id="registerBtn">Registration</button>
+          </div>
+        </form>
+      </div>
+      <div class="registration-form">
+        <h2>Registration</h2>
+        <form action="#" method="post">
+          <div class="form-floating">
+            <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+            <label for="name">Your Name</label>
+          </div>
+          <div class="form-floating">
+            <input type="email" class="form-control" id="reg_email" placeholder="name@example.com" required>
+            <label for="reg_email">Email address</label>
+          </div>
+          <div class="form-floating">
+            <input type="password" class="form-control" id="reg_password" placeholder="Password" required>
+            <label for="reg_password">Password</label>
+          </div>
+          <div class="form-floating">
+            <input type="password" class="form-control" id="confirm_password" placeholder="Confirm Password" required>
+            <label for="confirm_password">Confirm Password</label>
+          </div>
+          <div class="d-grid">
+            <button type="submit" class="btn btn-primary">Register</button>
+            <button type="button" class="btn btn-secondary mt-3" id="loginBtn">Back to Login</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
+
+<!-- Bootstrap JS Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Script to toggle between login and registration forms -->
+<script>
+  $(document).ready(function() {
+    $("#registerBtn").click(function() {
+      $(".login-form").hide();
+      $(".registration-form").show();
+    });
+
+    $("#loginBtn").click(function() {
+      $(".registration-form").hide();
+      $(".login-form").show();
+    });
+  });
+</script>
 
 </body>
 </html>
