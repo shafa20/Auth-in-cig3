@@ -11,7 +11,7 @@
     body {
       background-color: #f8f9fa;
     }
-    .login-form {
+    .login-form, .registration-form {
       max-width: 350px;
       margin: 0 auto;
       padding: 30px 20px;
@@ -20,14 +20,14 @@
       box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
       margin-top: 100px;
     }
-    .login-form h2 {
+    .login-form h2, .registration-form h2 {
       text-align: center;
       margin-bottom: 30px;
     }
-    .login-form .form-floating {
+    .login-form .form-floating, .registration-form .form-floating {
       margin-bottom: 20px;
     }
-    .login-form .btn-primary {
+    .login-form .btn-primary, .registration-form .btn-primary {
       width: 100%;
     }
     .registration-form {
@@ -42,13 +42,13 @@
     <div class="col-md-6 col-sm-12 mx-auto">
       <div class="login-form">
         <h2>Login</h2>
-        <form action="#" method="post">
+        <form action="<?php echo base_url('auth/login'); ?>" method="post">
           <div class="form-floating">
-            <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
             <label for="email">Email address</label>
           </div>
           <div class="form-floating">
-            <input type="password" class="form-control" id="password" placeholder="Password" required>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
             <label for="password">Password</label>
           </div>
           <div class="d-grid">
@@ -59,21 +59,21 @@
       </div>
       <div class="registration-form">
         <h2>Registration</h2>
-        <form action="#" method="post">
+        <form action="<?php echo base_url('auth/register'); ?>" method="post">
           <div class="form-floating">
-            <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
             <label for="name">Your Name</label>
           </div>
           <div class="form-floating">
-            <input type="email" class="form-control" id="reg_email" placeholder="name@example.com" required>
+            <input type="email" class="form-control" id="reg_email" name="reg_email" placeholder="name@example.com" required>
             <label for="reg_email">Email address</label>
           </div>
           <div class="form-floating">
-            <input type="password" class="form-control" id="reg_password" placeholder="Password" required>
+            <input type="password" class="form-control" id="reg_password" name="reg_password" placeholder="Password" required>
             <label for="reg_password">Password</label>
           </div>
           <div class="form-floating">
-            <input type="password" class="form-control" id="confirm_password" placeholder="Confirm Password" required>
+            <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required>
             <label for="confirm_password">Confirm Password</label>
           </div>
           <div class="d-grid">
