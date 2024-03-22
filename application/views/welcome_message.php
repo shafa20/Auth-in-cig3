@@ -41,7 +41,12 @@
   <div class="row">
     <div class="col-md-6 col-sm-12 mx-auto">
       <div class="login-form">
-        <h2>Login</h2>
+      <?php
+        if ($this->session->flashdata('error_msg')) {
+            echo '<div class="alert alert-danger" role="alert">' . $this->session->flashdata('error_msg') . '</div>';
+        }
+        ?>
+        <h2>welcome page Login</h2>
         <form action="<?php echo base_url('auth/login'); ?>" method="post">
           <div class="form-floating">
             <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>

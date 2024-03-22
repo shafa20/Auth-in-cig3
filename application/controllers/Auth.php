@@ -5,16 +5,18 @@ class Auth extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('user_model');
-        $this->load->library('session');
-        $this->load->library('form_validation');
+         $this->load->model('news_model');
+         $this->load->library('session');
+         $this->load->library('form_validation');
+         $this->load->model('user_model');
     }
 
     public function index() {
-        $this->load->view('login_registration');
+        $this->load->view('welcome_message');
     }
 
     public function login() {
+
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
         $this->form_validation->set_rules('password', 'Password', 'required');
 
@@ -25,6 +27,7 @@ class Auth extends CI_Controller {
             $password = $this->input->post('password');
 
             $user = $this->user_model->get_user($email, $password);
+            
 
             if ($user) {
                 $user_data = array(
@@ -36,6 +39,7 @@ class Auth extends CI_Controller {
                 redirect('auth/dashboard');
             } else {
                 $this->session->set_flashdata('error_msg', 'Invalid email or password');
+
                 redirect('auth');
             }
         }
@@ -67,13 +71,67 @@ class Auth extends CI_Controller {
         }
     }
 
-    public function dashboard() {
+    public function profile() {
         if ($this->session->userdata('logged_in')) {
-            $this->load->view('dashboard');
+            $user_id = $this->session->userdata('user_id');
+            $data['user'] = $this->user_model->get_user_by_id($user_id);
+            $this->load->view('profile', $data);
         } else {
             redirect('auth');
         }
     }
+
+   
+    public function update_profile() {
+        if ($this->session->userdata('logged_in')) {
+            $this->form_validation->set_rules('name', 'Name', 'trim');
+            $this->form_validation->set_rules('email', 'Email', 'trim|valid_email');
+            $this->form_validation->set_rules('password', 'Password', 'trim');
+            $this->form_validation->set_rules('confirm_password', 'Confirm Password', 'trim');
+    
+            // Check if password is provided, then confirm_password is required and must match password
+            if ($this->input->post('password') != '') {
+                $this->form_validation->set_rules('password', 'Password', 'required');
+                $this->form_validation->set_rules('confirm_password', 'Confirm Password', 'required|matches[password]');
+            }
+            if ($this->input->post('confirm_password') != '') {
+                $this->form_validation->set_rules('password', 'Password', 'required');
+                $this->form_validation->set_rules('confirm_password', 'Confirm Password', 'required|matches[password]');
+            }
+    
+            if ($this->form_validation->run() == FALSE) {
+                $this->session->set_flashdata('error_msg', 'Please enter the information correctly.');
+                redirect('auth/profile');
+            } else {
+                $user_id = $this->session->userdata('user_id');
+                $data = array(
+                    'name' => $this->input->post('name'),
+                    'email' => $this->input->post('email'),
+                );
+    
+                // Update password only if provided
+                if ($this->input->post('password') != '') {
+                    $data['password'] = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
+                }
+    
+                $this->user_model->update_user($user_id, $data);
+                $this->session->set_flashdata('success_msg', 'Profile updated successfully.');
+                redirect('auth/profile');
+            }
+        } else {
+            redirect('auth');
+        }
+    }
+    
+    public function dashboard() {
+        if ($this->session->userdata('logged_in')) {
+            $user_data['name'] = $this->user_model->getName();
+            $this->load->view('dashboard', $user_data);
+        } else {
+            redirect('auth');
+        }
+    }
+    
 
     public function logout() {
         $this->session->unset_userdata('user_id');
@@ -81,5 +139,6 @@ class Auth extends CI_Controller {
         $this->session->unset_userdata('logged_in');
         redirect('auth');
     }
+    
 }
 ?>

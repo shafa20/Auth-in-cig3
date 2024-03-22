@@ -41,7 +41,7 @@
   <div class="row">
     <div class="col-md-6 col-sm-12 mx-auto">
       <div class="login-form">
-        <h2>Login</h2>
+        <h2>Registration page Login</h2>
         <form action="<?php echo base_url('auth/login'); ?>" method="post">
           <div class="form-floating">
             <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
