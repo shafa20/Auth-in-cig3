@@ -47,6 +47,12 @@
         }
         ?>
         <h2>welcome page Login</h2>
+        <?php if ($this->session->flashdata('success_msg')): ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <?php echo $this->session->flashdata('success_msg'); ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php endif; ?>
         <form action="<?php echo base_url('auth/login'); ?>" method="post">
           <div class="form-floating">
             <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
@@ -58,6 +64,7 @@
           </div>
           <div class="d-grid">
             <button type="submit" class="btn btn-primary">Login</button>
+            <a href="<?php echo base_url('auth/forgot_password'); ?>"><p>Forgot password</p></a>
             <button type="button" class="btn btn-secondary mt-3" id="registerBtn">Registration</button>
           </div>
         </form>

@@ -63,13 +63,17 @@ class Auth extends CI_Controller {
             $result = $this->user_model->insert_user($data);
 
             if ($result) {
-                redirect('auth/dashboard');
+                $this->session->set_flashdata('success_msg', 'Registration completed successfully You Can Login Now');
+                redirect('auth');
             } else {
                 $this->session->set_flashdata('error_msg', 'Failed to register');
                 redirect('auth');
             }
         }
     }
+
+
+    
 
     public function profile() {
         if ($this->session->userdata('logged_in')) {
@@ -89,7 +93,6 @@ class Auth extends CI_Controller {
             $this->form_validation->set_rules('password', 'Password', 'trim');
             $this->form_validation->set_rules('confirm_password', 'Confirm Password', 'trim');
     
-            // Check if password is provided, then confirm_password is required and must match password
             if ($this->input->post('password') != '') {
                 $this->form_validation->set_rules('password', 'Password', 'required');
                 $this->form_validation->set_rules('confirm_password', 'Confirm Password', 'required|matches[password]');
@@ -109,7 +112,6 @@ class Auth extends CI_Controller {
                     'email' => $this->input->post('email'),
                 );
     
-                // Update password only if provided
                 if ($this->input->post('password') != '') {
                     $data['password'] = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
                 }
@@ -123,6 +125,54 @@ class Auth extends CI_Controller {
         }
     }
     
+    public function forgot_password() {
+        $this->load->view('forgot_password');
+    }
+
+    public function reset_password() {
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+    
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('forgot_password');
+        } else {
+            $email = $this->input->post('email');
+            $user = $this->user_model->get_user_by_email($email);
+    
+            if ($user) {
+               
+                $token = bin2hex(random_bytes(32));
+                $this->user_model->save_reset_token($user->id, $token);
+    
+                $this->load->view('reset_password', array('token' => $token));
+            } else {
+                $this->session->set_flashdata('error_msg', 'Invalid email address.');
+                redirect('auth/forgot_password');
+            }
+        }
+    }
+
+    public function update_password() {
+        $this->form_validation->set_rules('password', 'Password', 'required');
+        $this->form_validation->set_rules('confirm_password', 'Confirm Password', 'required|matches[password]');
+    
+        if ($this->form_validation->run() == FALSE) {
+            $this->session->set_flashdata('error_msg', 'Please enter valid passwords.');
+            redirect('auth/forgot_password');
+        } else {
+            $token = $this->input->post('token');
+            $password = $this->input->post('password');
+    
+            $result = $this->user_model->update_password_by_token($token, $password);
+    
+            if ($result) {
+                $this->session->set_flashdata('success_msg', 'Password updated successfully.');
+                redirect('auth');
+            } else {
+                $this->session->set_flashdata('error_msg', 'Failed to update password.');
+                redirect('auth/forgot_password');
+            }
+        }
+    }
     public function dashboard() {
         if ($this->session->userdata('logged_in')) {
             $user_data['name'] = $this->user_model->getName();
