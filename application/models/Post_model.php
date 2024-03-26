@@ -54,8 +54,7 @@ class Post_model extends CI_Model
 	function addNewPost($postInfo)
 	{
 		$this->db->trans_start();
-		print_r($postInfo);
-		die;
+		
 		$this->db->insert('tbl_post', $postInfo);
 
 		$insert_id = $this->db->insert_id();
