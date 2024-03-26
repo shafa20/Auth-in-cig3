@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Mar 25, 2024 at 10:53 AM
+-- Host: 127.0.0.1
+-- Generation Time: Mar 26, 2024 at 03:06 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -74,7 +74,7 @@ INSERT INTO `tbl_access_matrix` (`id`, `access`, `roleId`, `isDeleted`, `created
 (15, '[{\"module\":\"Booking\",\"total_access\":1,\"list\":0,\"create_records\":0,\"edit_records\":0,\"delete_records\":0},{\"module\":\"Brand\",\"total_access\":1,\"list\":0,\"create_records\":0,\"edit_records\":0,\"delete_records\":0},{\"module\":\"Model\",\"total_access\":1,\"list\":0,\"create_records\":0,\"edit_records\":0,\"delete_records\":0}]', 23, 0, 1, '2024-03-24 10:10:24', 1, '2024-03-25 06:16:44'),
 (16, '[{\"module\":\"Booking\",\"total_access\":0,\"list\":0,\"create_records\":0,\"edit_records\":0,\"delete_records\":0},{\"module\":\"Brand\",\"total_access\":0,\"list\":0,\"create_records\":0,\"edit_records\":0,\"delete_records\":0},{\"module\":\"Model\",\"total_access\":0,\"list\":0,\"create_records\":0,\"edit_records\":0,\"delete_records\":0}]', 10, 0, 1, '2024-03-24 15:03:21', NULL, NULL),
 (17, '[{\"module\":\"Booking\",\"total_access\":0,\"list\":0,\"create_records\":0,\"edit_records\":0,\"delete_records\":0},{\"module\":\"Brand\",\"total_access\":0,\"list\":0,\"create_records\":0,\"edit_records\":0,\"delete_records\":0},{\"module\":\"Model\",\"total_access\":0,\"list\":0,\"create_records\":0,\"edit_records\":0,\"delete_records\":0}]', 1, 0, 1, '2024-03-24 15:04:34', NULL, NULL),
-(18, '[{\"module\":\"Booking\",\"total_access\":0,\"list\":1,\"create_records\":1,\"edit_records\":1,\"delete_records\":0},{\"module\":\"Brand\",\"total_access\":0,\"list\":1,\"create_records\":1,\"edit_records\":1,\"delete_records\":0},{\"module\":\"Model\",\"total_access\":0,\"list\":0,\"create_records\":0,\"edit_records\":0,\"delete_records\":0}]', 24, 0, 1, '2024-03-25 06:15:27', 1, '2024-03-25 06:24:21'),
+(18, '[{\"module\":\"Booking\",\"total_access\":0,\"list\":1,\"create_records\":1,\"edit_records\":1,\"delete_records\":0},{\"module\":\"Brand\",\"total_access\":0,\"list\":1,\"create_records\":1,\"edit_records\":1,\"delete_records\":0},{\"module\":\"Model\",\"total_access\":0,\"list\":1,\"create_records\":1,\"edit_records\":1,\"delete_records\":0},{\"module\":\"Post\",\"total_access\":0,\"list\":1,\"create_records\":1,\"edit_records\":1,\"delete_records\":0}]', 24, 0, 1, '2024-03-25 06:15:27', 1, '2024-03-26 07:26:14'),
 (19, '[{\"module\":\"Booking\",\"total_access\":1,\"list\":0,\"create_records\":0,\"edit_records\":0,\"delete_records\":0},{\"module\":\"Brand\",\"total_access\":1,\"list\":0,\"create_records\":0,\"edit_records\":0,\"delete_records\":0},{\"module\":\"Model\",\"total_access\":1,\"list\":0,\"create_records\":0,\"edit_records\":0,\"delete_records\":0}]', 25, 0, 1, '2024-03-25 06:16:08', 1, '2024-03-25 06:22:16'),
 (20, '[{\"module\":\"Booking\",\"total_access\":0,\"list\":0,\"create_records\":0,\"edit_records\":0,\"delete_records\":0},{\"module\":\"Brand\",\"total_access\":0,\"list\":0,\"create_records\":0,\"edit_records\":0,\"delete_records\":0},{\"module\":\"Model\",\"total_access\":0,\"list\":0,\"create_records\":0,\"edit_records\":0,\"delete_records\":0}]', 26, 0, 1, '2024-03-25 06:21:10', NULL, NULL),
 (21, '[{\"module\":\"Booking\",\"total_access\":1,\"list\":0,\"create_records\":0,\"edit_records\":0,\"delete_records\":0},{\"module\":\"Brand\",\"total_access\":1,\"list\":0,\"create_records\":0,\"edit_records\":0,\"delete_records\":0},{\"module\":\"Model\",\"total_access\":1,\"list\":0,\"create_records\":0,\"edit_records\":0,\"delete_records\":0}]', 27, 0, 1, '2024-03-25 06:57:00', 1, '2024-03-25 06:57:07');
@@ -176,7 +176,9 @@ INSERT INTO `tbl_last_login` (`id`, `userId`, `sessionData`, `machineIp`, `userA
 (46, 17, '{\"role\":\"24\",\"roleText\":\"Employee\",\"name\":\"Safa Khan\",\"isAdmin\":\"2\"}', '::1', 'Chrome 122.0.0.0', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36', 'Linux', '2024-03-25 11:54:12'),
 (47, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\",\"isAdmin\":\"1\"}', '::1', 'Chrome 122.0.0.0', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36', 'Linux', '2024-03-25 11:55:33'),
 (48, 17, '{\"role\":\"27\",\"roleText\":\"test\",\"name\":\"Safa Khan\",\"isAdmin\":\"2\"}', '::1', 'Chrome 122.0.0.0', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36', 'Linux', '2024-03-25 11:57:43'),
-(49, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\",\"isAdmin\":\"1\"}', '::1', 'Chrome 122.0.0.0', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36', 'Linux', '2024-03-25 12:28:21');
+(49, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\",\"isAdmin\":\"1\"}', '::1', 'Chrome 122.0.0.0', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36', 'Linux', '2024-03-25 12:28:21'),
+(50, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\",\"isAdmin\":\"1\"}', '::1', 'Chrome 123.0.0.0', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36', 'Windows 10', '2024-03-26 12:17:17'),
+(51, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\",\"isAdmin\":\"1\"}', '::1', 'Chrome 123.0.0.0', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36', 'Windows 10', '2024-03-26 12:25:02');
 
 -- --------------------------------------------------------
 
@@ -226,8 +228,7 @@ CREATE TABLE `tbl_post` (
 --
 
 INSERT INTO `tbl_post` (`postId`, `postTitle`, `post_pic`, `description`, `isDeleted`, `createdBy`, `createdDtm`, `updatedBy`, `updatedDtm`) VALUES
-(5, 'rtyr', 'a:2:{i:0;s:23:\"1711360142-Safa vai.jpg\";i:1;s:24:\"1711360142-Safa vai2.jpg\";}', 'hfnf', 0, 0, '0000-00-00 00:00:00', NULL, NULL),
-(6, 'yujuj', 'a:2:{i:0;s:23:\"1711360213-Safa_vai.jpg\";i:1;s:24:\"1711360213-Safa_vai2.jpg\";}', 'ujuj', 0, 0, '0000-00-00 00:00:00', NULL, NULL);
+(32, 'Post 1', 'a:2:{i:0;s:17:\"1711461754-p1.jpg\";i:1;s:18:\"1711461821-pic.jpg\";}', 'dsfvdf', 0, 0, '0000-00-00 00:00:00', 1, '2024-03-26 15:03:41');
 
 -- --------------------------------------------------------
 
@@ -278,33 +279,6 @@ INSERT INTO `tbl_roles` (`roleId`, `role`, `status`, `isDeleted`, `createdBy`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_task`
---
-
-CREATE TABLE `tbl_task` (
-  `taskId` int(4) NOT NULL,
-  `taskTitle` varchar(256) NOT NULL,
-  `description` varchar(1024) DEFAULT NULL,
-  `isDeleted` tinyint(4) NOT NULL DEFAULT 0,
-  `createdBy` int(11) NOT NULL,
-  `createdDtm` datetime NOT NULL,
-  `updatedBy` int(11) DEFAULT NULL,
-  `updatedDtm` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `tbl_task`
---
-
-INSERT INTO `tbl_task` (`taskId`, `taskTitle`, `description`, `isDeleted`, `createdBy`, `createdDtm`, `updatedBy`, `updatedDtm`) VALUES
-(1, 'Small Task 1', 'Small task related to addition, substraction', 0, 1, '2022-06-18 20:47:47', 1, '2022-06-18 20:49:40'),
-(2, 'Small Task 2', 'Closure task', 0, 1, '2022-06-18 20:49:48', 1, '2024-03-24 06:53:58'),
-(3, 'Task 2', 'task2 Deceription', 0, 1, '2024-03-24 09:10:09', 1, '2024-03-24 09:40:43'),
-(4, 'task1', 'Task 1 Descrip', 0, 1, '2024-03-24 09:29:58', 1, '2024-03-24 09:40:14');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `tbl_users`
 --
 
@@ -330,7 +304,8 @@ CREATE TABLE `tbl_users` (
 INSERT INTO `tbl_users` (`userId`, `email`, `password`, `name`, `mobile`, `roleId`, `isAdmin`, `isDeleted`, `createdBy`, `createdDtm`, `updatedBy`, `updatedDtm`) VALUES
 (1, 'admin@gmail.com', '$2y$10$6Y28WIo2Oz.p8xsEMYcCmuvvijXZU8.sRT3737ix.vN1CwGs3NJk6', 'System Administrator', '9890098900', 1, 1, 0, 0, '2015-07-01 18:56:49', 1, '2024-03-25 06:23:11'),
 (16, 'shafa@gmail.com', '$2y$10$Rh/t8eP7vDF/QiLWrKgi4ey3TaThixdHFqBK3s8M2KcuqkKyIDLtu', 'Hosain Mohammad Shafa Khan', '1960951628', 23, 2, 1, 1, '2024-03-24 08:26:46', 1, '2024-03-25 06:57:13'),
-(17, 'safa@gmail.com', '$2y$10$vqiG2SU3d/H8NGpzfhQ.Qu22B2F3kOtZjOtGqNsHMb/tObz/sRYnm', 'Safa Khan', '0195555555', 27, 2, 0, 1, '2024-03-25 06:24:06', 1, '2024-03-25 06:57:22');
+(17, 'safa@gmail.com', '$2y$10$vqiG2SU3d/H8NGpzfhQ.Qu22B2F3kOtZjOtGqNsHMb/tObz/sRYnm', 'Safa Khan', '0195555555', 27, 2, 0, 1, '2024-03-25 06:24:06', 1, '2024-03-25 06:57:22'),
+(18, 'shafa@gmail.coom', '$2y$10$citFZQPvpFsgv9TkhY7g/O1wHDMv0N7R.vpCmqK4NRB2RsgOta7gO', 'Shafa Khan', '1960951628', 24, 2, 0, 1, '2024-03-26 07:25:52', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -392,12 +367,6 @@ ALTER TABLE `tbl_roles`
   ADD PRIMARY KEY (`roleId`);
 
 --
--- Indexes for table `tbl_task`
---
-ALTER TABLE `tbl_task`
-  ADD PRIMARY KEY (`taskId`);
-
---
 -- Indexes for table `tbl_users`
 --
 ALTER TABLE `tbl_users`
@@ -429,19 +398,19 @@ ALTER TABLE `tbl_brand`
 -- AUTO_INCREMENT for table `tbl_last_login`
 --
 ALTER TABLE `tbl_last_login`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `tbl_model`
 --
 ALTER TABLE `tbl_model`
-  MODIFY `modelId` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `modelId` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tbl_post`
 --
 ALTER TABLE `tbl_post`
-  MODIFY `postId` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `postId` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `tbl_reset_password`
@@ -456,16 +425,10 @@ ALTER TABLE `tbl_roles`
   MODIFY `roleId` tinyint(4) NOT NULL AUTO_INCREMENT COMMENT 'role id', AUTO_INCREMENT=28;
 
 --
--- AUTO_INCREMENT for table `tbl_task`
---
-ALTER TABLE `tbl_task`
-  MODIFY `taskId` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
 -- AUTO_INCREMENT for table `tbl_users`
 --
 ALTER TABLE `tbl_users`
-  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
