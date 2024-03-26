@@ -1,7 +1,26 @@
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+          <b>shafa</b> Admin System |
+        </div>
+        <strong>Copyright &copy; 2024 <a href="<?php echo base_url(); ?>">shafa</a>.</strong> All rights reserved.
+    </footer>
+    
+    <script src="<?php echo base_url(); ?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/dist/js/adminlte.min.js" type="text/javascript"></script>
+    <!-- <script src="<?php echo base_url(); ?>assets/dist/js/pages/dashboard.js" type="text/javascript"></script> -->
+    <script src="<?php echo base_url(); ?>assets/js/jquery.validate.js" type="text/javascript"></script>
+    <script src="<?php echo base_url(); ?>assets/js/validation.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var windowURL = window.location.href;
+        pageURL = windowURL.substring(0, windowURL.lastIndexOf('/'));
+        var x= $('a[href="'+pageURL+'"]');
+            x.addClass('active');
+            x.parent().addClass('active');
+        var y= $('a[href="'+windowURL+'"]');
+            y.addClass('active');
+            y.parent().addClass('active');
+    </script>
+  </body>
+</html>

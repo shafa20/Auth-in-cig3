@@ -1,70 +1,121 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-  <?php $this->load->view('includes/header'); ?>
-  <title>Codeigniter 3 CRUD Application</title>
-</head>
-
-<body>
-
-  <div class="container">
-    <div class="row">
-
-      <div class="col-lg-12 my-5">
-        <h2 class="text-center mb-3">Codeigniter 3 CRUD (Create-Read-Update-Delete) Application</h2>
-      </div>
-
-      <div class="col-lg-12">
-
-        <?php echo $this->session->flashdata('message'); ?>
-
-        <div class="d-flex justify-content-between mb-3">
-          <h4>Manage Posts</h4>
-          <a href="<?= base_url('post/create') ?>" class="btn btn-success"> <i class="fas fa-plus"></i> Add New Post</a>
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        <i class="fa fa-user-circle-o" aria-hidden="true"></i> Post Management
+        <small>Add, Edit, Delete</small>
+      </h1>
+    </section>
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12 text-right">
+                <div class="form-group">
+                    <a class="btn btn-primary" href="<?php echo base_url(); ?>post/add"><i class="fa fa-plus"></i> Add New Post</a>
+                </div>
+            </div>
         </div>
-
-        <table class="table table-bordered table-default">
-
-          <thead class="thead-light">
-            <tr>
-              <th width="2%">#</th>
-              <th width="25%">Title</th>
-              <th width="53%">Description</th>
-              <th width="20%">Action</th>
-            </tr>
-          </thead>
-
-          <tbody>
-
-            <?php $i = 1; foreach ($data as $post) { ?>
-
-              <tr>
-                <td><?php echo $i; ?></td>
-                <td><?php echo $post->title; ?></td>
-                <td><?php echo $post->description; ?></td>
-
-                <td>
-                  <a href="<?= base_url('post/edit/' . $post->id) ?>" class="btn btn-primary"> <i class="fas fa-edit"></i> Edit </a>
-                  <a href="<?= base_url('post/delete/' . $post->id) ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this record?')"> <i class="fas fa-trash"></i> Delete </a>
-                </td>
-
-              </tr>
-
-            <?php $i++; } ?>
-
-          </tbody>
-
-        </table>
-
+        <div class="row">
+            <div class="col-md-12">
+                <?php
+                    $this->load->helper('form');
+                    $error = $this->session->flashdata('error');
+                    if($error)
+                    {
+                ?>
+                <div class="alert alert-danger alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <?php echo $this->session->flashdata('error'); ?>                    
+                </div>
+                <?php } ?>
+                <?php  
+                    $success = $this->session->flashdata('success');
+                    if($success)
+                    {
+                ?>
+                <div class="alert alert-success alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <?php echo $this->session->flashdata('success'); ?>
+                </div>
+                <?php } ?>
+                
+                <div class="row">
+                    <div class="col-md-12">
+                        <?php echo validation_errors('<div class="alert alert-danger alert-dismissable">', ' <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>'); ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+              <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Post List</h3>
+                    <div class="box-tools">
+                        <form action="<?php echo base_url() ?>post/postListing" method="POST" id="searchList">
+                            <div class="input-group">
+                              <input type="text" name="searchText" value="<?php echo $searchText; ?>" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search"/>
+                              <div class="input-group-btn">
+                                <button class="btn btn-sm btn-default searchList"><i class="fa fa-search"></i></button>
+                              </div>
+                            </div>
+                        </form>
+                    </div>
+                </div><!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                <table class="table table-hover">
+                    <tr>
+                        <th>Post Title</th>
+                        <th>Description</th>
+                        <th>Created On</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                    <?php
+                    if(!empty($records))
+                    {
+                        foreach($records as $record)
+                        {
+                    ?>
+                    <tr>
+                        <td><?php echo $record->postTitle ?></td>
+                       
+                        <td><?php echo $record->description ?></td>
+                        <td><?php echo date("d-m-Y", strtotime($record->createdDtm)) ?></td>
+                        <td class="text-center">
+                            <a class="btn btn-sm btn-info" href="<?php echo base_url().'post/edit/'.$record->postId; ?>" title="Edit"><i class="fa fa-pencil"></i></a>
+                            
+                            <a class="btn btn-sm btn-danger" href="<?php echo base_url().'post/delete/'.$record->postId; ?>" title="Delete"><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    <?php
+                        }
+                    }
+                    ?>
+                  </table>
+                  
+                </div><!-- /.box-body -->
+                <div class="box-footer clearfix">
+                    <?php echo $this->pagination->create_links(); ?>
+                </div>
+              </div><!-- /.box -->
+            </div>
+        </div>
+    </section>
+    <section class="content">
+      <div class="row">
+       
       </div>
-    </div>
-  </div>
-
-
-
-  <?php $this->load->view('includes/footer'); ?>
-
-</body>
-
-</html>
+    </section>
+</div>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/common.js" charset="utf-8"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        jQuery('ul.pagination li a').click(function (e) {
+            e.preventDefault();            
+            var link = jQuery(this).get(0).href;            
+            var value = link.substring(link.lastIndexOf('/') + 1);
+            jQuery("#searchList").attr("action", baseURL + "post/postListing/" + value);
+            jQuery("#searchList").submit();
+        });
+    });
+    
+</script>
