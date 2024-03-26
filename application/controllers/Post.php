@@ -85,6 +85,7 @@ class Post extends BaseController
 			$this->form_validation->set_rules('postTitle', 'Post Title', 'trim|required|max_length[256]');
 			$this->form_validation->set_rules('description', 'Description', 'trim|required|max_length[1024]');
 
+
 			if ($this->form_validation->run() == FALSE) {
 				$this->add();
 			} else {
@@ -115,8 +116,8 @@ class Post extends BaseController
 			}
 		}
 	}
-	
-    private function _do_upload()
+
+	private function _do_upload()
 	{
 		$files = $_FILES['post_pic'];
 		$file_count = count($files['name']);
@@ -196,6 +197,7 @@ class Post extends BaseController
 
 			// Check if the post exists before attempting to delete
 			$postInfo = $this->pm->getPostInfo($postId);
+
 			if (!$postInfo) {
 				$this->session->set_flashdata('error', 'post not found');
 				redirect('post/postListing');
@@ -203,6 +205,7 @@ class Post extends BaseController
 
 			// Delete the post
 			$result = $this->pm->deletePost($postId);
+
 
 			if ($result) {
 				$this->session->set_flashdata('success', 'post deleted successfully');
@@ -217,40 +220,111 @@ class Post extends BaseController
 	/**
 	 * This function is used to edit the user information
 	 */
-	function editPost()
+	// function editPost()
+	// {
+	// 	if (!$this->hasUpdateAccess()) {
+	// 		$this->loadThis();
+	// 	} else {
+	// 		$this->load->library('form_validation');
+
+	// 		$postId = $this->input->post('postId');
+
+	// 		$this->form_validation->set_rules('postTitle', 'Post Title', 'trim|callback_html_clean|required|max_length[256]');
+	// 		$this->form_validation->set_rules('description', 'Description', 'trim|callback_html_clean|required|max_length[1024]');
+
+	// 		if ($this->form_validation->run() == FALSE) {
+	// 			$this->edit($postId);
+	// 		} else {
+	// 			$postTitle = $this->security->xss_clean($this->input->post('postTitle'));
+	// 			$description = $this->security->xss_clean($this->input->post('description'));
+
+	// 			$postInfo = array('postTitle' => $postTitle, 'description' => $description, 'updatedBy' => $this->vendorId, 'updatedDtm' => date('Y-m-d H:i:s'));
+
+	// 			$result = $this->pm->editPost($postInfo, $postId);
+
+	// 			if ($result == true) {
+	// 				$this->session->set_flashdata('success', 'post updated successfully');
+	// 			} else {
+	// 				$this->session->set_flashdata('error', 'post updation failed');
+	// 			}
+
+	// 			redirect('post/postListing');
+	// 		}
+	// 	}
+	// }
+
+	public function editPost()
 	{
 		if (!$this->hasUpdateAccess()) {
 			$this->loadThis();
 		} else {
 			$this->load->library('form_validation');
-
+	
 			$postId = $this->input->post('postId');
-
+	
 			$this->form_validation->set_rules('postTitle', 'Post Title', 'trim|callback_html_clean|required|max_length[256]');
 			$this->form_validation->set_rules('description', 'Description', 'trim|callback_html_clean|required|max_length[1024]');
-
+	
 			if ($this->form_validation->run() == FALSE) {
 				$this->edit($postId);
 			} else {
 				$postTitle = $this->security->xss_clean($this->input->post('postTitle'));
 				$description = $this->security->xss_clean($this->input->post('description'));
-
-				$postInfo = array('postTitle' => $postTitle, 'description' => $description, 'updatedBy' => $this->vendorId, 'updatedDtm' => date('Y-m-d H:i:s'));
-
-				$result = $this->pm->editPost($postInfo, $postId);
-
-				if ($result == true) {
-					$this->session->set_flashdata('success', 'post updated successfully');
-				} else {
-					$this->session->set_flashdata('error', 'post updation failed');
+	
+				// Get existing post information
+				$postInfo = $this->pm->getPostInfo($postId);
+	
+				// Get uploaded images
+				$uploadedImages = $this->_do_upload();
+	
+				// Get the names of images to be removed
+				$imagesToRemove = $this->input->post('remove_images');
+	
+				// Remove the images from the database and upload folder
+				if (!empty($imagesToRemove)) {
+					foreach ($imagesToRemove as $image) {
+						$image_path = './uploads/' . $image;
+						if (file_exists($image_path)) {
+							unlink($image_path);
+						}
+					}
+					// Remove the removed images from the database
+					$this->pm->removeImages($postId, $imagesToRemove);
 				}
-
+	
+				// If new images are uploaded, add them to the existing images
+				if (!empty($uploadedImages)) {
+					
+					$existingImages = unserialize($postInfo->post_pic);
+					
+					$newImages = array_merge($existingImages, $uploadedImages);
+					
+					
+					$data['post_pic'] = serialize($newImages);
+					
+				}
+	
+				// Update post information
+				$postInfo = array(
+					'postTitle' => $postTitle,
+					'description' => $description,
+					'updatedBy' => $this->vendorId,
+					'updatedDtm' => date('Y-m-d H:i:s')
+				);
+	
+				$result = $this->pm->editPost($postInfo, $postId);
+	
+				if ($result == true) {
+					$this->session->set_flashdata('success', 'Post updated successfully');
+				} else {
+					$this->session->set_flashdata('error', 'Post updation failed');
+				}
+	
 				redirect('post/postListing');
 			}
 		}
 	}
-
-
+	
 
 	public function html_clean($s, $v)
 	{
