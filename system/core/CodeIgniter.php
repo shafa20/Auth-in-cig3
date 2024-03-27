@@ -57,6 +57,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *
  */
 	const CI_VERSION = '3.1.13';
+	//safa hmvc 3.1.10
 
 /*
  * ------------------------------------------------------
