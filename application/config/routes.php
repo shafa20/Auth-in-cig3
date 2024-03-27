@@ -48,3 +48,7 @@ $route['roleListing/(:num)/(:num)'] = "roles/roleListing/$1/$2";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
+
+// Convert user-related routes to HMVC
+$route['user'] = 'user/index';
+$route['user/(:any)'] = 'user/$1';

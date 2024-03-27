@@ -22,6 +22,7 @@ class Booking extends BaseController
      */
     public function index()
     {
+        
         redirect('booking/bookingListing');
     }
     

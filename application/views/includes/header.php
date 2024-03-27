@@ -45,7 +45,7 @@
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b>Sha</b>fa</span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>Shafa</b></span>
+        <span class="logo-lg"><b>Shafa Khan</b></span>
       </a>
       <!-- Header Navbar: style can be found in header.less -->
       <nav class="navbar navbar-static-top" role="navigation">
@@ -123,6 +123,13 @@
                 <span>Users</span>
               </a>
             </li>
+            <li>
+              <a href="<?php echo base_url('user/userListing'); ?>">
+                  <i class="fa fa-users"></i>
+                  <span>User2</span>
+              </a>
+          </li>
+
             <li>
               <a href="<?php echo base_url(); ?>roles/roleListing">
                 <i class="fa fa-user-circle-o " aria-hidden="true"></i>
