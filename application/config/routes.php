@@ -31,9 +31,7 @@ $route['changePassword'] = "user/changePassword";
 $route['changePassword/(:any)'] = "user/changePassword/$1";
 $route['pageNotFound'] = "user/pageNotFound";
 $route['checkEmailExists'] = "user/checkEmailExists";
-$route['login-history'] = "user/loginHistoy";
-$route['login-history/(:num)'] = "user/loginHistoy/$1";
-$route['login-history/(:num)/(:num)'] = "user/loginHistoy/$1/$2";
+
 
 $route['forgotPassword'] = "login/forgotPassword";
 $route['resetPasswordUser'] = "login/resetPasswordUser";
@@ -46,9 +44,5 @@ $route['roleListing'] = "roles/roleListing";
 $route['roleListing/(:num)'] = "roles/roleListing/$1";
 $route['roleListing/(:num)/(:num)'] = "roles/roleListing/$1/$2";
 
-/* End of file routes.php */
-/* Location: ./application/config/routes.php */
-
-// Convert user-related routes to HMVC
 $route['user'] = 'user/index';
 $route['user/(:any)'] = 'user/$1';

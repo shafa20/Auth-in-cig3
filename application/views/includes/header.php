@@ -117,12 +117,6 @@
           <?php
           if ($is_admin == 1) {
             ?>
-            <!-- <li>
-              <a href="<?php echo base_url(); ?>userListing">
-                <i class="fa fa-users"></i>
-                <span>Users</span>
-              </a>
-            </li> -->
             <li>
               <a href="<?php echo base_url('user/userListing'); ?>">
                   <i class="fa fa-users"></i>

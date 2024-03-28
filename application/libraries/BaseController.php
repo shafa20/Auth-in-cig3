@@ -1,12 +1,5 @@
 <?php defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' ); 
 
-/**
- * Class : BaseController
- * Base Class to control over all the classes
- * @author : Kishor Mali
- * @version : 1.1
- * @since : 15 November 2016
- */
 class BaseController extends CI_Controller {
 	protected $role = '';
 	protected $vendorId = '';
@@ -137,14 +130,7 @@ class BaseController extends CI_Controller {
 		redirect ( 'login' );
 	}
 
-	/**
-     * This function used to load views
-     * @param {string} $viewName : This is view name
-     * @param {mixed} $headerInfo : This is array of header information
-     * @param {mixed} $pageInfo : This is array of page information
-     * @param {mixed} $footerInfo : This is array of footer information
-     * @return {null} $result : null
-     */
+	
     function loadViews($viewName = "", $headerInfo = NULL, $pageInfo = NULL, $footerInfo = NULL){
 		// pre($this->global); die;
         $this->load->view('includes/header', $headerInfo);
@@ -152,13 +138,7 @@ class BaseController extends CI_Controller {
         $this->load->view('includes/footer', $footerInfo);
     }
 	
-	/**
-	 * This function used provide the pagination resources
-	 * @param {string} $link : This is page link
-	 * @param {number} $count : This is page count
-	 * @param {number} $perPage : This is records per page limit
-	 * @return {mixed} $result : This is array of records and pagination data
-	 */
+	
 	function paginationCompress($link, $count, $perPage = 10, $segment = SEGMENT) {
 		$this->load->library ( 'pagination' );
 
