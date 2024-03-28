@@ -3,14 +3,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 
-$route['default_controller'] = "modules/login/login";
+$route['default_controller'] = "modules/auth/login";
 $route['404_override'] = 'error_404';
 $route['translate_uri_dashes'] = FALSE;
 
 
 /*********** USER DEFINED ROUTES *******************/
-$route['login'] = 'login/index';
-$route['loginMe'] = 'login/loginMe';
+$route['login'] = 'auth/login/index';
+$route['loginMe'] = 'auth/login/loginMe';
 $route['dashboard'] = 'user';
 $route['logout'] = 'user/logout';
 $route['userListing'] = 'user/userListing';
@@ -33,16 +33,18 @@ $route['pageNotFound'] = "user/pageNotFound";
 $route['checkEmailExists'] = "user/checkEmailExists";
 
 
-$route['forgotPassword'] = "login/forgotPassword";
-$route['resetPasswordUser'] = "login/resetPasswordUser";
-$route['resetPasswordConfirmUser'] = "login/resetPasswordConfirmUser";
-$route['resetPasswordConfirmUser/(:any)'] = "login/resetPasswordConfirmUser/$1";
-$route['resetPasswordConfirmUser/(:any)/(:any)'] = "login/resetPasswordConfirmUser/$1/$2";
-$route['createPasswordUser'] = "login/createPasswordUser";
+$route['forgotPassword'] = "auth/login/forgotPassword";
+$route['resetPasswordUser'] = "auth/login/resetPasswordUser";
+$route['resetPasswordConfirmUser'] = "auth/login/resetPasswordConfirmUser";
+$route['resetPasswordConfirmUser/(:any)'] = "auth/login/resetPasswordConfirmUser/$1";
+$route['resetPasswordConfirmUser/(:any)/(:any)'] = "auth/login/resetPasswordConfirmUser/$1/$2";
+$route['createPasswordUser'] = "auth/login/createPasswordUser";
 
-$route['roleListing'] = "roles/roleListing";
-$route['roleListing/(:num)'] = "roles/roleListing/$1";
-$route['roleListing/(:num)/(:num)'] = "roles/roleListing/$1/$2";
+
+$route['roleListing'] = "auth/roles/roleListing";
+$route['roleListing/(:num)'] = "auth/roles/roleListing/$1";
+$route['roleListing/(:num)/(:num)'] = "auth/roles/roleListing/$1/$2";
+
 
 $route['user'] = 'user/index';
 $route['user/(:any)'] = 'user/$1';

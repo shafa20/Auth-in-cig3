@@ -26,7 +26,7 @@ $status = $roleInfo->status;
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     
-                    <form role="form" action="<?php echo base_url() ?>roles/editRole" method="post" id="editRole" role="form">
+                    <form role="form" action="<?php echo base_url() ?>auth/roles/editRole" method="post" id="editRole" role="form">
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-6">                                
@@ -96,7 +96,7 @@ $status = $roleInfo->status;
                     <div class="box-tools">
                     </div>
                 </div><!-- /.box-header -->
-                <form method="POST" action='<?php echo base_url() ?>roles/storeAccessMatrix'>
+                <form method="POST" action='<?php echo base_url() ?>auth/roles/storeAccessMatrix'>
                 <input type="hidden" value="<?php echo $roleId; ?>" name="roleIdForMatrix" id="roleIdForMatrix" />
                 <div class="box-body table-responsive no-padding">
                     <table class="table table-hover">

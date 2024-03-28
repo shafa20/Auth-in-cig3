@@ -20,7 +20,7 @@
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     <?php $this->load->helper("form"); ?>
-                    <form role="form" id="addRole" action="<?php echo base_url() ?>roles/addNewRole" method="post" role="form">
+                    <form role="form" id="addRole" action="<?php echo base_url() ?>auth/roles/addNewRole" method="post" role="form">
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-6">                                

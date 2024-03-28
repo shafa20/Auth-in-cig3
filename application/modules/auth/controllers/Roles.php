@@ -49,7 +49,7 @@ class Roles extends BaseController
 
             $this->global['pageTitle'] = 'shafa : Roles Listing';
 
-            $this->loadViews("roles/list", $this->global, $data, NULL);
+            $this->loadViews("auth/list", $this->global, $data, NULL);
         }
     }
 
@@ -63,7 +63,7 @@ class Roles extends BaseController
         } else {
             $this->global['pageTitle'] = 'shafa : Add New Role';
 
-            $this->loadViews("roles/add", $this->global, NULL, NULL);
+            $this->loadViews("auth/add", $this->global, NULL, NULL);
         }
     }
 
@@ -118,7 +118,7 @@ class Roles extends BaseController
                     $this->session->set_flashdata('error', 'Role creation failed');
                 }
 
-                redirect('roles/roleListing');
+                redirect('auth/roles/roleListing');
             }
         }
     }
@@ -144,7 +144,7 @@ class Roles extends BaseController
 
             $this->global['pageTitle'] = 'shafa : Edit Role';
 
-            $this->loadViews("roles/edit", $this->global, $data, NULL);
+            $this->loadViews("auth/edit", $this->global, $data, NULL);
         }
     }
 
@@ -180,7 +180,9 @@ class Roles extends BaseController
                     $this->session->set_flashdata('error', 'Role updation failed');
                 }
 
-                redirect('roles/roleListing');
+                
+                redirect('auth/roles/roleListing');
+
             }
         }
     }
@@ -236,7 +238,7 @@ class Roles extends BaseController
             $this->session->set_flashdata('error', 'Access matrix updation failed');
         }
 
-        redirect('roles/edit/' . $roleId);
+        redirect('auth/roles/edit/' . $roleId);
     }
     public function deleteRole()
     {
@@ -255,7 +257,7 @@ class Roles extends BaseController
                 $this->session->set_flashdata('error', 'Role deletion failed');
             }
 
-            redirect('roles/roleListing');
+            redirect('auth/roles/roleListing');
         }
     }
 

@@ -125,7 +125,7 @@
           </li>
 
             <li>
-              <a href="<?php echo base_url(); ?>roles/roleListing">
+              <a href="<?php echo base_url(); ?>auth/roles/roleListing">
                 <i class="fa fa-user-circle-o " aria-hidden="true"></i>
                 <span>Roles</span>
               </a>

@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-xs-12 text-right">
                 <div class="form-group">
-                    <a class="btn btn-primary" href="<?php echo base_url(); ?>roles/add"><i class="fa fa-plus"></i> Add
+                    <a class="btn btn-primary" href="<?php echo base_url(); ?>auth/roles/add"><i class="fa fa-plus"></i> Add
                         New Role</a>
                 </div>
             </div>
@@ -50,7 +50,7 @@
                     <div class="box-header">
                         <h3 class="box-title">Roles List</h3>
                         <div class="box-tools">
-                            <form action="<?php echo base_url() ?>roles/roleListing" method="POST" id="searchList">
+                            <form action="<?php echo base_url() ?>auth/roles/roleListing" method="POST" id="searchList">
                                 <div class="input-group">
                                     <input type="text" name="searchText" value="<?php echo $searchText; ?>"
                                         class="form-control input-sm pull-right" style="width: 150px;"
@@ -95,7 +95,7 @@
                                         </td>
                                         <td class="text-center">
                                             <a class="btn btn-sm btn-info"
-                                                href="<?php echo base_url() . 'roles/edit/' . $record->roleId; ?>"
+                                                href="<?php echo base_url() . 'auth/roles/edit/' . $record->roleId; ?>"
                                                 title="Edit"><i class="fa fa-pencil"></i></a>
                                             <a class="btn btn-sm btn-danger deleteRole" href="#"
                                                 data-roleid="<?php echo $record->roleId; ?>" title="Delete"><i
@@ -133,7 +133,7 @@
         var roleId = $(this).data('roleid');
         if (confirm("Are you sure you want to delete this role?")) {
             $.ajax({
-                url: "<?php echo base_url(); ?>roles/deleteRole",
+                url: "<?php echo base_url(); ?>auth/roles/deleteRole",
                 method: "POST",
                 data: { roleId: roleId },
                 success: function (data) {

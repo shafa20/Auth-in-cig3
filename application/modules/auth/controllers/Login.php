@@ -17,6 +17,7 @@ class Login extends CI_Controller
      */
     public function index()
     {
+       
         $this->isLoggedIn();
     }
     
@@ -29,7 +30,7 @@ class Login extends CI_Controller
         
         if(!isset($isLoggedIn) || $isLoggedIn != TRUE)
         {
-            $this->load->view('login/login');
+            $this->load->view('auth/login');
 
         }
         else
@@ -111,7 +112,7 @@ class Login extends CI_Controller
         
         if(!isset($isLoggedIn) || $isLoggedIn != TRUE)
         {
-            $this->load->view('login/forgotPassword');
+            $this->load->view('auth/forgotPassword');
         }
         else
         {
@@ -205,7 +206,7 @@ class Login extends CI_Controller
         
         if ($is_correct == 1)
         {
-            $this->load->view('login/newPassword', $data);
+            $this->load->view('auth/newPassword', $data);
         }
         else
         {
