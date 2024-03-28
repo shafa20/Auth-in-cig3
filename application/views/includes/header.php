@@ -118,7 +118,7 @@
           if ($is_admin == 1) {
             ?>
             <li>
-              <a href="<?php echo base_url('user/userListing'); ?>">
+              <a href="<?php echo base_url('auth/user/userListing'); ?>">
                   <i class="fa fa-users"></i>
                   <span>User</span>
               </a>

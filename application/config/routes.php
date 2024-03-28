@@ -11,26 +11,26 @@ $route['translate_uri_dashes'] = FALSE;
 /*********** USER DEFINED ROUTES *******************/
 $route['login'] = 'auth/login/index';
 $route['loginMe'] = 'auth/login/loginMe';
-$route['dashboard'] = 'user';
-$route['logout'] = 'user/logout';
-$route['userListing'] = 'user/userListing';
+$route['dashboard'] = 'auth/user';
+$route['logout'] = 'auth/user/logout';
+$route['userListing'] = 'auth/user/userListing';
 $route['userListing/(:num)'] = "user/userListing/$1";
-$route['addNew'] = "user/addNew";
-$route['addNewUser'] = "user/addNewUser";
-$route['editOld'] = "user/editOld";
-$route['editOld/(:num)'] = "user/editOld/$1";
-$route['editUser'] = "user/editUser";
-$route['deleteUser'] = "user/deleteUser";
-$route['profile'] = "user/profile";
-$route['profile/(:any)'] = "user/profile/$1";
-$route['profileUpdate'] = "user/profileUpdate";
-$route['profileUpdate/(:any)'] = "user/profileUpdate/$1";
+$route['addNew'] = "auth/user/addNew";
+$route['addNewUser'] = "auth/user/addNewUser";
+$route['editOld'] = "auth/user/editOld";
+$route['editOld/(:num)'] = "auth/user/editOld/$1";
+$route['editUser'] = "auth/user/editUser";
+$route['deleteUser'] = "auth/user/deleteUser";
+$route['profile'] = "auth/user/profile";
+$route['profile/(:any)'] = "auth/user/profile/$1";
+$route['profileUpdate'] = "auth/user/profileUpdate";
+$route['profileUpdate/(:any)'] = "auth/user/profileUpdate/$1";
 
-$route['loadChangePass'] = "user/loadChangePass";
-$route['changePassword'] = "user/changePassword";
-$route['changePassword/(:any)'] = "user/changePassword/$1";
-$route['pageNotFound'] = "user/pageNotFound";
-$route['checkEmailExists'] = "user/checkEmailExists";
+$route['loadChangePass'] = "auth/user/loadChangePass";
+$route['changePassword'] = "auth/user/changePassword";
+$route['changePassword/(:any)'] = "auth/user/changePassword/$1";
+$route['pageNotFound'] = "auth/user/pageNotFound";
+$route['checkEmailExists'] = "auth/user/checkEmailExists";
 
 
 $route['forgotPassword'] = "auth/login/forgotPassword";
