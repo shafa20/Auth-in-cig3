@@ -107,6 +107,7 @@ $status = $roleInfo->status;
                             <th>Create</th>
                             <th>Edit</th>
                             <th>Delete</th>
+                            <th>Export_Import</th>
                         </tr>
                         <?php
                         if(!empty($moduleList))
@@ -123,6 +124,7 @@ $status = $roleInfo->status;
                             <td><input type='checkbox' name='access[<?= $record['module'] ?>][create_records]' <?= ($matrix['create_records'] == 1) ? 'checked':''; ?> /></td>
                             <td><input type='checkbox' name='access[<?= $record['module'] ?>][edit_records]' <?= ($matrix['edit_records'] == 1) ? 'checked':''; ?> /></td>
                             <td><input type='checkbox' name='access[<?= $record['module'] ?>][delete_records]' <?= ($matrix['delete_records'] == 1) ? 'checked':''; ?> /></td>
+                            <td><input type='checkbox' name='access[<?= $record['module'] ?>][export_import_records]' <?= isset($matrix['export_import_records']) && $matrix['export_import_records'] == 1 ? 'checked' : ''; ?> /></td>
                         </tr>
                         <?php
                             }

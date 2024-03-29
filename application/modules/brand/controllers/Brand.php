@@ -194,31 +194,39 @@ class Brand extends BaseController
  
 
     function exportBrand() {
-        $this->load->helper('download');
-        $brands = $this->bm->getAllBrands();
-    
-        if (empty($brands)) {
-            $this->session->set_flashdata('error', 'No brands found to export.');
+        if (!$this->hasExportImportAccess()) {
+            $this->loadThis();
+        } else {
+            $this->load->helper('download');
+            $brands = $this->bm->getAllBrands();
+        
+            if (empty($brands)) {
+                $this->session->set_flashdata('error', 'No brands found to export.');
+                redirect('brand/brandListing');
+            }
+        
+            $csv_data = '"Serial No","Brand Title","Description"' . "\n";
+            $serial_no = 1;
+            foreach ($brands as $brand) {
+                $csv_data .= '"' . $serial_no . '","' . $brand->brandTitle . '","' . $brand->description . '"' . "\n";
+                $serial_no++;
+            }
+        
+            $this->session->set_flashdata('success', 'File Downloaded successfully');
+            
+            force_download('exported_brand.csv', $csv_data);
+            
             redirect('brand/brandListing');
         }
-    
-        $csv_data = '"Serial No","Brand Title","Description"' . "\n";
-        $serial_no = 1;
-        foreach ($brands as $brand) {
-            $csv_data .= '"' . $serial_no . '","' . $brand->brandTitle . '","' . $brand->description . '"' . "\n";
-            $serial_no++;
-        }
-    
-        $this->session->set_flashdata('success', 'File Downloaded successfully');
-
-        // Initiate file download
-        force_download('exported_brand.csv', $csv_data);
-        redirect('brand/brandListing');
     }
  
     public function importCSV() {
-        $this->load->helper('file');
-        $this->load->model('Brand_model', 'bm');
+
+        if (!$this->hasExportImportAccess()) {
+            $this->loadThis();
+        } else {
+            $this->load->helper('file');
+            $this->load->model('Brand_model', 'bm');
     
         // Check if a CSV file was uploaded
         if (!empty($_FILES['csv_file']['name'])) {
@@ -242,6 +250,8 @@ class Brand extends BaseController
         }
     
         redirect('brand/brandListing');
+        }
+       
     }
 
     

@@ -16,7 +16,8 @@ $config['moduleList'] = array(
         'list' => 0,
         'create_records' => 0,
         'edit_records' => 0,
-        'delete_records' => 0
+        'delete_records' => 0,
+        'export_import_records' => 0
     ),
     array(
         'module' => 'Brand',
@@ -24,7 +25,8 @@ $config['moduleList'] = array(
         'list' => 0,
         'create_records' => 0,
         'edit_records' => 0,
-        'delete_records' => 0
+        'delete_records' => 0,
+        'export_import_records' => 0
     ),
     array(
         'module' => 'Model',
@@ -32,7 +34,8 @@ $config['moduleList'] = array(
         'list' => 0,
         'create_records' => 0,
         'edit_records' => 0,
-        'delete_records' => 0
+        'delete_records' => 0,
+        'export_import_records' => 0
     ),
     array(
         'module' => 'Post',
@@ -40,6 +43,7 @@ $config['moduleList'] = array(
         'list' => 0,
         'create_records' => 0,
         'edit_records' => 0,
-        'delete_records' => 0
+        'delete_records' => 0,
+        'export_import_records' => 0
     )
 );

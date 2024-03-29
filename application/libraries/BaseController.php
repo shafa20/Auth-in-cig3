@@ -110,6 +110,16 @@ class BaseController extends CI_Controller {
 		}
 		return false;
 	}
+	protected function hasExportImportAccess() {
+		if ($this->isAdmin() ||
+			(array_key_exists($this->module, $this->accessInfo) 
+			&& ($this->accessInfo[$this->module]['export_import_records'] == 1 
+			|| $this->accessInfo[$this->module]['total_access'] == 1)))
+		{
+			return true;
+		}
+		return false;
+	}
 
 	/**
 	 * This function is used to load the set of views

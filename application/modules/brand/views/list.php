@@ -8,7 +8,9 @@
     </section>
     <section class="content">
        <div class="row">
+             
             <div class="col-xs-12">
+            
                 <div class="text-right">
                     <div class="form-group">
                         <a class="btn btn-primary" href="<?php echo base_url(); ?>brand/add"><i class="fa fa-plus"></i> Add New Brand</a>
@@ -151,4 +153,9 @@
             });
         }
     });
+    // Add a delay of 2 seconds (2000 milliseconds) before redirecting
+setTimeout(function() {
+    window.location.href = '<?php echo base_url(); ?>brand/brandListing';
+}, 5000);
+
 </script>
