@@ -15,12 +15,27 @@
                     </div>
                 </div>
                 <div class="text-left">
-                    <div class="form-group">
-                        <a class="btn btn-primary" href="<?php echo base_url(); ?>brand/exportBrand"><i class="fa fa-download"></i> Export Brand</a>
-                    </div>
-                </div>
+            <div class="form-group">
+                <a class="btn btn-primary" href="<?php echo base_url(); ?>brand/exportBrand"><i class="fa fa-download"></i> Export Brand</a>
             </div>
         </div>
+            </div>
+        </div>
+        <div class="row">
+        
+        <div class="col-xs-6 text-right">
+            <div class="form-group">
+                <form method="post" action="<?php echo base_url(); ?>brand/importCSV" enctype="multipart/form-data">
+                    <div class="input-group">
+                        <input type="file" name="csv_file" accept=".csv" class="form-control">
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-primary">Import</button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
         <div class="row">
             <div class="col-md-12">
                 <?php

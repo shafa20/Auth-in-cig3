@@ -196,17 +196,54 @@ class Brand extends BaseController
     function exportBrand() {
         $this->load->helper('download');
         $brands = $this->bm->getAllBrands();
+    
+        if (empty($brands)) {
+            $this->session->set_flashdata('error', 'No brands found to export.');
+            redirect('brand/brandListing');
+        }
+    
         $csv_data = '"Serial No","Brand Title","Description"' . "\n";
         $serial_no = 1;
         foreach ($brands as $brand) {
             $csv_data .= '"' . $serial_no . '","' . $brand->brandTitle . '","' . $brand->description . '"' . "\n";
             $serial_no++;
         }
+    
+        $this->session->set_flashdata('success', 'File Downloaded successfully');
+
+        // Initiate file download
         force_download('exported_brand.csv', $csv_data);
+        redirect('brand/brandListing');
     }
+ 
+    public function importCSV() {
+        $this->load->helper('file');
+        $this->load->model('Brand_model', 'bm');
     
+        // Check if a CSV file was uploaded
+        if (!empty($_FILES['csv_file']['name'])) {
+            $csv_data = array_map('str_getcsv', file($_FILES['csv_file']['tmp_name']));
+            unset($csv_data[0]);
     
+            // Insert each row into the database
+            foreach ($csv_data as $row) {
+                $brandInfo = array(
+                    'brandTitle' => $row[1] ?? '',
+                    'description' => $row[2] ?? '',
+                    'createdBy' => $this->vendorId,
+                    'createdDtm' => date('Y-m-d H:i:s')
+                );
     
+                $this->bm->addNewBrand($brandInfo); 
+            }
+            $this->session->set_flashdata('success', 'File Uploaded successfully');
+        } else {
+            $this->session->set_flashdata('error', 'No file uploaded.');
+        }
+    
+        redirect('brand/brandListing');
+    }
+
     
     public function html_clean($s, $v)
     {
