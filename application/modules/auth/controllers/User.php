@@ -54,7 +54,7 @@ class User extends BaseController
             
             $this->global['pageTitle'] = 'shafa : User Listing';
             
-            $this->loadViews("users/users", $this->global, $data, NULL);
+            $this->loadViews("auth/users", $this->global, $data, NULL);
         }
     }
 
@@ -74,7 +74,7 @@ class User extends BaseController
             
             $this->global['pageTitle'] = 'shafa : Add New User';
 
-            $this->loadViews("users/addNew", $this->global, $data, NULL);
+            $this->loadViews("auth/addNew", $this->global, $data, NULL);
         }
     }
 
@@ -170,7 +170,7 @@ class User extends BaseController
 
             $this->global['pageTitle'] = 'shafa : Edit User';
             
-            $this->loadViews("users/editOld", $this->global, $data, NULL);
+            $this->loadViews("auth/editOld", $this->global, $data, NULL);
         }
     }
     
@@ -320,7 +320,7 @@ class User extends BaseController
         $data["active"] = $active;
         
         $this->global['pageTitle'] = $active == "details" ? 'shafa : My Profile' : 'shafa : Change Password';
-        $this->loadViews("users/profile", $this->global, $data, NULL);
+        $this->loadViews("auth/profile", $this->global, $data, NULL);
     }
 
     /**

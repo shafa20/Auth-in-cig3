@@ -260,7 +260,9 @@ class Brand extends BaseController
             $mpdf->WriteHTML($pdf_content);
             $this->session->set_flashdata('success', 'PDF File Downloaded successfully');
             // Output PDF
-            $mpdf->Output('exported_brands.pdf', 'D'); // 'D' to force download
+            $mpdf->Output('exported_brands.pdf', 'D'); 
+            echo "ok";
+            die;
 
             // Redirect to brand listing page
             redirect('brand/brandListing');
