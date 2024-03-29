@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 
-$route['default_controller'] = "modules/login/login";
+$route['default_controller'] = "login/login/index";
 $route['404_override'] = 'error_404';
 $route['translate_uri_dashes'] = FALSE;
 
