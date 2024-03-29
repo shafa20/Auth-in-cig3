@@ -193,7 +193,21 @@ class Brand extends BaseController
     }
  
 
-
+    function exportBrand() {
+        $this->load->helper('download');
+        $brands = $this->bm->getAllBrands();
+        $csv_data = '"Serial No","Brand Title","Description"' . "\n";
+        $serial_no = 1;
+        foreach ($brands as $brand) {
+            $csv_data .= '"' . $serial_no . '","' . $brand->brandTitle . '","' . $brand->description . '"' . "\n";
+            $serial_no++;
+        }
+        force_download('exported_brand.csv', $csv_data);
+    }
+    
+    
+    
+    
     public function html_clean($s, $v)
     {
         return strip_tags((string) $s);

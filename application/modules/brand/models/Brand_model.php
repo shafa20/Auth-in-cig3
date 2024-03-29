@@ -78,6 +78,12 @@ class Brand_model extends CI_Model
         return $query->row();
     }
     
+    function getAllBrands() {
+        $this->db->select('*');
+        $this->db->from('tbl_brand');
+        $query = $this->db->get();
+        return $query->result();
+    }
     
     /**
      * This function is used to update the brand information
