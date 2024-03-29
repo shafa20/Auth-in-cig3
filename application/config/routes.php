@@ -3,14 +3,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 
-$route['default_controller'] = "modules/auth/login";
+$route['default_controller'] = "auth/login/index";
 $route['404_override'] = 'error_404';
 $route['translate_uri_dashes'] = FALSE;
 
 
 /*********** USER DEFINED ROUTES *******************/
+
 $route['login'] = 'auth/login/index';
 $route['loginMe'] = 'auth/login/loginMe';
+$route[''] = 'auth/login/index';
 $route['dashboard'] = 'auth/user';
 $route['logout'] = 'auth/user/logout';
 $route['userListing'] = 'auth/user/userListing';
