@@ -1,8 +1,8 @@
 <?php if (!defined('BASEPATH'))
-    exit ('No direct script access allowed');
+    exit('No direct script access allowed');
 
 require APPPATH . '/libraries/BaseController.php';
-
+require FCPATH . 'vendor/autoload.php';
 
 class Brand extends BaseController
 {
@@ -35,7 +35,7 @@ class Brand extends BaseController
             $this->loadThis();
         } else {
             $searchText = '';
-            if (!empty ($this->input->post('searchText'))) {
+            if (!empty($this->input->post('searchText'))) {
                 $searchText = $this->security->xss_clean($this->input->post('searchText'));
             }
             $data['searchText'] = $searchText;
@@ -123,10 +123,10 @@ class Brand extends BaseController
         }
     }
 
-/**
- * This function is used to delete a brand
- * @param int $brandId The ID of the brand to delete
- */
+    /**
+     * This function is used to delete a brand
+     * @param int $brandId The ID of the brand to delete
+     */
     function delete($brandId = NULL)
     {
         if (!$this->hasDeleteAccess()) {
@@ -191,74 +191,121 @@ class Brand extends BaseController
             }
         }
     }
- 
 
-    function exportBrand() {
+
+    function exportBrand()
+    {
         if (!$this->hasExportImportAccess()) {
             $this->loadThis();
         } else {
             $this->load->helper('download');
             $brands = $this->bm->getAllBrands();
-        
+
             if (empty($brands)) {
                 $this->session->set_flashdata('error', 'No brands found to export.');
                 redirect('brand/brandListing');
             }
-        
+
             $csv_data = '"Serial No","Brand Title","Description"' . "\n";
             $serial_no = 1;
             foreach ($brands as $brand) {
                 $csv_data .= '"' . $serial_no . '","' . $brand->brandTitle . '","' . $brand->description . '"' . "\n";
                 $serial_no++;
             }
-        
-            $this->session->set_flashdata('success', 'File Downloaded successfully');
-            
+
+            $this->session->set_flashdata('success', 'CSV File Downloaded successfully');
+
             force_download('exported_brand.csv', $csv_data);
-            
+
             redirect('brand/brandListing');
         }
     }
- 
-    public function importCSV() {
+
+    function exportBrandAsPDF()
+    {
+        if (!$this->hasExportImportAccess()) {
+            $this->loadThis();
+        } else {
+            // Load the mPDF library
+
+
+            // Fetch all brands
+            $brands = $this->bm->getAllBrands();
+
+            // Initialize PDF content
+            $pdf_content = '<h1>All Brands Information</h1>';
+            $pdf_content .= '<table border="1">';
+            $pdf_content .= '<tr><th>Serial No</th><th>Brand Title</th><th>Description</th></tr>';
+            $serial_no = 1;
+            foreach ($brands as $brand) {
+                $pdf_content .= '<tr>';
+                $pdf_content .= '<td>' . $serial_no . '</td>';
+                $pdf_content .= '<td>' . $brand->brandTitle . '</td>';
+                $pdf_content .= '<td>' . $brand->description . '</td>';
+                $pdf_content .= '</tr>';
+                $serial_no++;
+            }
+            $pdf_content .= '</table>';
+
+            // Create mPDF object
+            $mpdf = new \Mpdf\Mpdf([
+                'format' => 'A4',
+                'margin_top' => 10,
+                'margin_bottom' => 10,
+                'margin_left' => 10,
+                'margin_right' => 10,
+            ]);
+
+            // Write HTML content to PDF
+            $mpdf->WriteHTML($pdf_content);
+            $this->session->set_flashdata('success', 'PDF File Downloaded successfully');
+            // Output PDF
+            $mpdf->Output('exported_brands.pdf', 'D'); // 'D' to force download
+
+            // Redirect to brand listing page
+            redirect('brand/brandListing');
+        }
+    }
+
+
+
+    public function importCSV()
+    {
 
         if (!$this->hasExportImportAccess()) {
             $this->loadThis();
         } else {
             $this->load->helper('file');
             $this->load->model('Brand_model', 'bm');
-    
-        // Check if a CSV file was uploaded
-        if (!empty($_FILES['csv_file']['name'])) {
-            $csv_data = array_map('str_getcsv', file($_FILES['csv_file']['tmp_name']));
-            unset($csv_data[0]);
-    
-            // Insert each row into the database
-            foreach ($csv_data as $row) {
-                $brandInfo = array(
-                    'brandTitle' => $row[1] ?? '',
-                    'description' => $row[2] ?? '',
-                    'createdBy' => $this->vendorId,
-                    'createdDtm' => date('Y-m-d H:i:s')
-                );
-    
-                $this->bm->addNewBrand($brandInfo); 
+
+            // Check if a CSV file was uploaded
+            if (!empty($_FILES['csv_file']['name'])) {
+                $csv_data = array_map('str_getcsv', file($_FILES['csv_file']['tmp_name']));
+                unset($csv_data[0]);
+
+                // Insert each row into the database
+                foreach ($csv_data as $row) {
+                    $brandInfo = array(
+                        'brandTitle' => $row[1] ?? '',
+                        'description' => $row[2] ?? '',
+                        'createdBy' => $this->vendorId,
+                        'createdDtm' => date('Y-m-d H:i:s')
+                    );
+
+                    $this->bm->addNewBrand($brandInfo);
+                }
+                $this->session->set_flashdata('success', 'File Uploaded successfully');
+            } else {
+                $this->session->set_flashdata('error', 'No file uploaded.');
             }
-            $this->session->set_flashdata('success', 'File Uploaded successfully');
-        } else {
-            $this->session->set_flashdata('error', 'No file uploaded.');
+
+            redirect('brand/brandListing');
         }
-    
-        redirect('brand/brandListing');
-        }
-       
     }
 
-    
+
     public function html_clean($s, $v)
     {
         return strip_tags((string) $s);
     }
 }
-
-?>
