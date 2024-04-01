@@ -188,11 +188,7 @@ class Login extends CI_Controller
         }
     }
 
-    /**
-     * This function used to reset the password 
-     * @param string $activation_id : This is unique id
-     * @param string $email : This is user email
-     */
+    
     function resetPasswordConfirmUser($activation_id, $email)
     {
         // Get email and activation code from URL values at index 3-4
@@ -260,11 +256,7 @@ class Login extends CI_Controller
         }
     }
 
-    /**
-     * This method use to build access information for modules from json to array.
-     * @param number $roleId: This is role id
-     * @return array $finalMatrixArray: This is converted array
-     */
+    
     private function accessInfo($roleId)
     {
         $finalMatrixArray = [];
@@ -280,5 +272,6 @@ class Login extends CI_Controller
         return $finalMatrixArray;
     }
 }
+
 
 ?>
