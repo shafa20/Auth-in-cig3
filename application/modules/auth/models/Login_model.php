@@ -4,11 +4,7 @@
 class Login_model extends CI_Model
 {
     
-    /**
-     * This function used to check the login credentials of the user
-     * @param string $email : This is email of the user
-     * @param string $password : This is encrypted password of the user
-     */
+   
     function loginMe($email, $password)
     {
         $this->db->select('BaseTbl.userId, BaseTbl.password, BaseTbl.name, BaseTbl.roleId, BaseTbl.isAdmin, 
@@ -32,11 +28,7 @@ class Login_model extends CI_Model
         }
     }
 
-    /**
-     * This function used to check email exists or not
-     * @param {string} $email : This is users email id
-     * @return {boolean} $result : TRUE/FALSE
-     */
+    
     function checkEmailExist($email)
     {
         $this->db->select('userId');
@@ -52,11 +44,7 @@ class Login_model extends CI_Model
     }
 
 
-    /**
-     * This function used to insert reset password data
-     * @param {array} $data : This is reset password data
-     * @return {boolean} $result : TRUE/FALSE
-     */
+   
     function resetPasswordUser($data)
     {
         $result = $this->db->insert('tbl_reset_password', $data);
@@ -68,11 +56,7 @@ class Login_model extends CI_Model
         }
     }
 
-    /**
-     * This function is used to get customer information by email-id for forget password email
-     * @param string $email : Email id of customer
-     * @return object $result : Information of customer
-     */
+    
     function getCustomerInfoByEmail($email)
     {
         $this->db->select('userId, email, name');
@@ -84,11 +68,7 @@ class Login_model extends CI_Model
         return $query->row();
     }
 
-    /**
-     * This function used to check correct activation deatails for forget password.
-     * @param string $email : Email id of user
-     * @param string $activation_id : This is activation string
-     */
+    
     function checkActivationDetails($email, $activation_id)
     {
         $this->db->select('id');
@@ -108,10 +88,7 @@ class Login_model extends CI_Model
         $this->db->delete('tbl_reset_password', array('email'=>$email));
     }
 
-    /**
-     * This function used to save login information of user
-     * @param array $loginInfo : This is users login information
-     */
+    
     function lastLogin($loginInfo)
     {
         $this->db->trans_start();
@@ -119,11 +96,7 @@ class Login_model extends CI_Model
         $this->db->trans_complete();
     }
 
-    /**
-     * This function is used to get last login info by user id
-     * @param number $userId : This is user id
-     * @return number $result : This is query result
-     */
+    
     function lastLoginInfo($userId)
     {
         $this->db->select('BaseTbl.createdDtm');
@@ -135,10 +108,7 @@ class Login_model extends CI_Model
         return $query->row();
     }
 
-    /**
-     * This function used to get access matrix of a role by roleId
-     * @param number $roleId : This is roleId of user
-     */
+    
     function getRoleAccessMatrix($roleId)
     {
         $this->db->select('roleId, access');

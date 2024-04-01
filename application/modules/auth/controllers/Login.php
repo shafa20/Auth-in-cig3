@@ -120,9 +120,7 @@ class Login extends CI_Controller
         }
     }
     
-    /**
-     * This function used to generate reset password request link
-     */
+    
     function resetPasswordUser()
     {
         $status = '';

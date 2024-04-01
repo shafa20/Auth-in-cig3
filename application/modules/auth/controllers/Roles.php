@@ -124,10 +124,7 @@ class Roles extends BaseController
     }
 
 
-    /**
-     * This function is used load user edit information
-     * @param number $roleId : Optional : This is user id
-     */
+   
     function edit($roleId = NULL)
     {
         if (!$this->isAdmin()) {
@@ -187,11 +184,7 @@ class Roles extends BaseController
         }
     }
 
-    /**
-     * This method used to build access matrix for role from configuration
-     * and insert default entry into the database
-     * @param number $roleId : This is role id
-     */
+   
     private function addRoleMatrix($roleId)
     {
         $this->load->config('modules');

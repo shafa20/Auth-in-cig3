@@ -4,11 +4,7 @@
 
 class Role_model extends CI_Model
 {
-    /**
-     * This function is used to get the role listing count
-     * @param string $searchText : This is optional search text
-     * @return number $count : This is row count
-     */
+   
     function roleListingCount($searchText)
     {
         $this->db->select('BaseTbl.roleId, BaseTbl.role, BaseTbl.status, BaseTbl.createdDtm');
@@ -23,13 +19,7 @@ class Role_model extends CI_Model
         return $query->num_rows();
     }
 
-    /**
-     * This function is used to get the role listing count
-     * @param string $searchText : This is optional search text
-     * @param number $page : This is pagination offset
-     * @param number $segment : This is pagination limit
-     * @return array $result : This is result
-     */
+   
     function roleListing($searchText, $page, $segment)
     {
         $this->db->select('BaseTbl.roleId, BaseTbl.role, BaseTbl.status, BaseTbl.createdDtm');
@@ -47,10 +37,7 @@ class Role_model extends CI_Model
         return $result;
     }
 
-    /**
-     * This function is used to get the user roles information
-     * @return array $result : This is result of the query
-     */
+  
     function getUserRoles()
     {
         $this->db->select('roleId, role');
@@ -61,12 +48,7 @@ class Role_model extends CI_Model
         return $query->result();
     }
 
-    /**
-     * This function is used to check whether email id is already exist or not
-     * @param {string} $email : This is email id
-     * @param {number} $userId : This is user id
-     * @return {mixed} $result : This is searched result
-     */
+   
     function checkEmailExists($email, $userId = 0)
     {
         $this->db->select("email");
@@ -82,10 +64,7 @@ class Role_model extends CI_Model
     }
 
 
-    /**
-     * This function is used to add new role to system
-     * @return number $insert_id : This is last inserted id
-     */
+    
     function addNewRole($roleInfo)
     {
         $this->db->trans_start();
@@ -98,11 +77,7 @@ class Role_model extends CI_Model
         return $insert_id;
     }
 
-    /**
-     * This function used to get role information by id
-     * @param number $roleId : This is role id
-     * @return array $result : This is role information
-     */
+  
     function getRoleInfo($roleId)
     {
         $this->db->select('roleId, role, status');
@@ -115,11 +90,7 @@ class Role_model extends CI_Model
     }
 
 
-    /**
-     * This function is used to update the role information
-     * @param array $roleInfo : This is role updated information
-     * @param number $roleId : This is role id
-     */
+   
     function editRole($roleInfo, $roleId)
     {
         $this->db->where('roleId', $roleId);
@@ -130,11 +101,6 @@ class Role_model extends CI_Model
 
 
 
-    /**
-     * This function is used to delete the user information
-     * @param number $userId : This is user id
-     * @return boolean $result : TRUE / FALSE
-     */
     function deleteUser($userId, $userInfo)
     {
         $this->db->where('userId', $userId);
@@ -144,11 +110,7 @@ class Role_model extends CI_Model
     }
 
 
-    /**
-     * This function used to get access matrix of a role by roleId.
-     * If the access matrix entry doesn't exists then it creates the matrix.
-     * @param number $roleId : This is roleId of user
-     */
+   
     function getRoleAccessMatrix($roleId)
     {
         $result = $this->getRoleAccessMatrixQuery($roleId);
@@ -168,10 +130,7 @@ class Role_model extends CI_Model
         return $result;
     }
 
-    /**
-     * This function used to get role access matrix by role id
-     * @param number $roleId : This is roleId of user
-     */
+    
     private function getRoleAccessMatrixQuery($roleId)
     {
         $this->db->select('roleId, access');
@@ -183,9 +142,7 @@ class Role_model extends CI_Model
         return $result;
     }
 
-    /**
-     * This method is used to insert default access rights when a role gets created
-     */
+    
     function insertAccessMatrix($accessMatrix)
     {
         $this->db->trans_start();
@@ -193,9 +150,7 @@ class Role_model extends CI_Model
         $this->db->trans_complete();
     }
 
-    /**
-     * This method is used to get access rights information for super admin
-     */
+    
     function getFromAccessMatrix2()
     {
         $this->db->select('*');
@@ -207,10 +162,7 @@ class Role_model extends CI_Model
         return $result;
     }
 
-    /**
-     * This method is used to generate access matrix from configuration
-     * and insert into database
-     */
+    
     function generateMatrix()
     {
         $this->db->select('*');
@@ -240,11 +192,7 @@ class Role_model extends CI_Model
         }
     }
 
-    /**
-     * This method used to update the access rights for role
-     * @param number $roleId : This is role id
-     * @param string $accessMatrix : This is JSON string access matrix
-     */
+    
     function updateAccessMatrix($roleId, $accessMatrix)
     {
         $this->db->where('roleId', $roleId);
